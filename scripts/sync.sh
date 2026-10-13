@@ -90,7 +90,7 @@ cat <<EOF > "${RUNTIME_CONFIG}"
 EOF
 
 echo "==> [5/5] 转换为 Obsidian 高保真 Markdown 与资源迁移 (yarle)..."
-npx --yes @yarle/yarle --configFile "${RUNTIME_CONFIG}"
+npx --yes yarle-evernote-to-md --configFile "${RUNTIME_CONFIG}"
 
 echo ""
 echo "✅ 同步完成！"
