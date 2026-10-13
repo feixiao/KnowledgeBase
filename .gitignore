@@ -3,6 +3,9 @@ node_modules/
 .venv/
 __pycache__/
 
+# Environment & local config
+.env
+
 # Evernote backup local caches & database
 .evernote/
 *.enex
