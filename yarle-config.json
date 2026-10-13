@@ -1,0 +1,32 @@
+{
+  "enexSources": [
+    "./.evernote/enex"
+  ],
+  "templateFile": "",
+  "currentTemplate": "",
+  "outputDir": "./20_Evernote/Active",
+  "keepOriginalHtml": false,
+  "isMetadataNeeded": true,
+  "isTagsNeeded": true,
+  "isZettelkastenNeeded": false,
+  "plainTextNotesOnly": false,
+  "skipImages": false,
+  "skipWebClips": false,
+  "useHashTags": false,
+  "outputFormat": "ObsidianMD",
+  "skipEnexFileNameFromImagePath": true,
+  "nestedTags": {
+    "separatorInEN": "_",
+    "replaceSeparatorWith": "/"
+  },
+  "resourcesDir": "../../assets",
+  "turndown": {
+    "headingStyle": "atx",
+    "hr": "---",
+    "bulletListMarker": "-",
+    "codeBlockStyle": "fenced"
+  },
+  "keepOriginalDate": true,
+  "addExtension": false,
+  "generateNLink": false
+}

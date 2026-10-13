@@ -1,0 +1,20 @@
+# Dependencies & caches
+node_modules/
+.venv/
+__pycache__/
+
+# Evernote backup local caches & database
+.evernote/
+*.enex
+*.sqlite3
+
+# Obsidian workspace & Smart Connections local vector cache
+.obsidian/workspace*
+.obsidian/cache*
+.smart-connections/
+.smart-env/
+
+# OS specific files
+.DS_Store
+Thumbs.db
+*.tmp
