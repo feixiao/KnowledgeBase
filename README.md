@@ -8,8 +8,8 @@
 ## 🏗️ 架构拓扑 (双仓库解耦)
 
 ```text
-/Users/frank/
-├── wk/github/KnowledgeBase/           # [当前代码仓库] 纯工具链与流水线
+~ (用户家目录)
+├── path/to/KnowledgeBase/             # [当前代码仓库] 纯工具链与流水线
 │   ├── .env                           # 本地私有配置 (指向目标 Vault 路径及凭证)
 │   ├── scripts/                       # 同步与转换脚本
 │   │   ├── init-auth.sh               # 印象笔记首次授权引导
@@ -35,9 +35,9 @@
 ```bash
 cp .env.example .env
 ```
-在 `.env` 中确认 `VAULT_DIR`（默认已指向 `~/Documents/KnowledgeVault`）：
+在 `.env` 中确认 `VAULT_DIR`（支持 `~` 相对用户家目录路径）：
 ```env
-VAULT_DIR=/Users/frank/Documents/KnowledgeVault
+VAULT_DIR=~/Documents/KnowledgeVault
 ```
 
 ### 2. 首次初始化 (仅需一次)
@@ -71,8 +71,8 @@ make sync
      - 在 Exclusions 排除项中添加：`20_Evernote/Archives`。
 
 3. **在 Obsidian 里挂载一键同步按钮 (可选)**：
-   - 安装插件 **Shell Commands**，添加命令：
+   - 新建一条命令（使用脚本绝对路径或 `~` 路径）：
      ```bash
-     bash /Users/frank/wk/github/KnowledgeBase/scripts/sync.sh
+     bash ~/path/to/KnowledgeBase/scripts/sync.sh
      ```
    - 绑定快捷键或侧边栏按钮即可在 Obsidian 内部一键触发拉取。
