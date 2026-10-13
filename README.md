@@ -58,21 +58,52 @@ make sync
 
 ---
 
-## 🧠 Obsidian 与 Smart Connections (RAG) 配置说明
+## 🧠 本地 AI 与知识库问答配置 (LM Studio + Obsidian)
 
-1. **打开数据仓库**：
-   - 打开 Obsidian -> `Open folder as vault` -> 选择目标目录（例如 `~/Documents/KnowledgeVault`）。
+针对 Smart Connections 商业化及 Pro 限制问题，推荐使用**完全开源、无订阅墙**的方案与本地 LM Studio 对接：
 
-2. **安装并配置 Smart Connections 插件**：
-   - 在 Obsidian 设置 -> **Community plugins** -> 安装 **Smart Connections**。
-   - **Embedding 设置**：选择 **Built-in / Local**（内置轻量模型，在 Mac 本地极速计算，无需消耗 API）。
-   - **Chat 设置**：选择 **Custom OpenAI Compatible**，填入你的 API Gateway URL 与 Key。
-   - **文件过滤与排除 (降噪)**：
-     - 在 Exclusions 排除项中添加：`20_Evernote/Archives`。
+### 方案一：Obsidian Copilot（首选，侧边栏 AI 助手 & Vault QA）
 
-3. **在 Obsidian 里挂载一键同步按钮 (可选)**：
-   - 新建一条命令（使用脚本绝对路径或 `~` 路径）：
-     ```bash
-     bash ~/path/to/KnowledgeBase/scripts/sync.sh
-     ```
-   - 绑定快捷键或侧边栏按钮即可在 Obsidian 内部一键触发拉取。
+适合在 Obsidian 侧边栏与当前笔记或整个知识库对话。
+
+1. **启动 LM Studio**：
+   - 加载模型（如 `qwen2.5-7b-instruct`、`llama-3.1-8b-instruct`）。
+   - 切换至 **Developer / Local Server** 标签页，开启服务（默认地址 `http://localhost:1234`）。
+
+2. **配置 Obsidian Copilot**：
+   - 在 Obsidian 设置 -> **Community plugins** -> 搜索并安装 **Copilot**。
+   - 打开 Copilot 设置：
+     - **Default Model Provider**：选择 `Custom (OpenAI Compatible)`
+     - **API Key**：任意填写（例如 `lm-studio`）
+     - **Base URL**：`http://localhost:1234/v1`
+     - **Model Name**：输入 LM Studio 中加载的模型名称（如 `qwen2.5-7b-instruct`）
+   - **知识库问答 (Vault QA)**：
+     - 在侧边栏对话框中，可直接 `@笔记名称` 引用单篇或多篇笔记；
+     - 切换到 **Vault QA** 模式可直接检索整个 Vault 进行问答。
+
+---
+
+### 方案二：Text Generator（笔记内联生成与 Prompt 模版）
+
+适合在写笔记时按快捷键就地补全、总结、提取要点或批量执行 Prompt 模版。
+
+1. **配置 Text Generator**：
+   - 在 Obsidian 设置 -> **Community plugins** -> 安装 **Text Generator**。
+   - 打开 Text Generator 设置：
+     - **Provider**：选择 `Custom` (或 `OpenAI Compatible`)
+     - **Endpoint**：`http://localhost:1234/v1/chat/completions` (或 `http://localhost:1234/v1`)
+     - **API Key**：任意填写（例如 `lm-studio`）
+     - **Model**：填写 LM Studio 中加载的模型名称
+2. **使用方式**：
+   - 选中文本或在光标处按下快捷键（默认 `Cmd/Ctrl + J`），即可调用本地模型自动补全或处理内容。
+   - 支持在模板目录中创建自定义 Prompt，一键格式化印象笔记转过来的内容。
+---
+
+### 附：在 Obsidian 里挂载一键同步按钮 (可选)
+
+配合 **Shell Commands** 插件或自定义命令：
+1. 新建一条命令（使用脚本绝对路径或 `~` 路径）：
+   ```bash
+   bash ~/path/to/KnowledgeBase/scripts/sync.sh
+   ```
+2. 绑定快捷键或侧边栏按钮即可在 Obsidian 内部一键触发拉取印象笔记。
