@@ -17,7 +17,7 @@ echo "即将调用 evernote-backup 与国内印象笔记后端交互。"
 echo "请按终端提示在浏览器完成登录与授权。"
 echo ""
 
-uvx evernote-backup init --backend china --database "${DB_FILE}"
+uvx evernote-backup init-db --backend china --database "${DB_FILE}"
 
 echo ""
 echo "✅ 授权信息已成功持久化至: ${DB_FILE}"

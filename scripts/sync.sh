@@ -18,7 +18,7 @@ if [ ! -f "${DB_FILE}" ]; then
   echo "❌ 错误: 未检测到本地授权数据库 (.evernote/data.db)"
   echo "请先运行一次授权命令完成印象笔记国内版登录绑定："
   echo "  make init-auth"
-  echo "  或者: uvx evernote-backup init --backend china --database .evernote/data.db"
+  或者: uvx evernote-backup init-db --backend china --database .evernote/data.db
   exit 1
 fi
 
