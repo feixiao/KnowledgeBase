@@ -97,6 +97,28 @@ make sync
 2. **使用方式**：
    - 选中文本或在光标处按下快捷键（默认 `Cmd/Ctrl + J`），即可调用本地模型自动补全或处理内容。
    - 支持在模板目录中创建自定义 Prompt，一键格式化印象笔记转过来的内容。
+
+---
+
+### 方案三：命令行直接向知识库提问（免安装 Obsidian 插件）
+
+本仓库内置了轻量级本地 RAG 问答脚本（基于纯 Python 3 标准库，零三方依赖，自动分块、BM25 混合检索并直连 LM Studio 本地流式输出）：
+
+1. **启动 LM Studio**：开启 Local Server（默认端口 `1234`）并加载模型。
+2. **终端直接提问**：
+   ```bash
+   # 带参数直接提问
+   make ask Q="知识库里有哪些关于架构设计的笔记？"
+
+   # 或进入交互式输入
+   make ask
+   ```
+3. **可选自定义配置**（在 `.env` 中）：
+   ```env
+   LMSTUDIO_HOST=http://localhost:1234
+   LMSTUDIO_MODEL=qwen2.5-7b-instruct
+   ```
+   > 若不配置 `LMSTUDIO_MODEL`，脚本会自动检测并使用 LM Studio 当前激活的模型。
 ---
 
 ### 附：在 Obsidian 里挂载一键同步按钮 (可选)
